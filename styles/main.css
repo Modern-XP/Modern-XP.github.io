@@ -1,0 +1,19 @@
+/* Colors */
+:root {
+	color: white;
+	background: black;
+}
+
+/* Media Queries */
+@media print {
+	:root {
+		color: black;
+		background-color: white;
+	}
+}
+@media (prefers-color-scheme: light) {
+	:root {
+		color: gray;
+		background-color: black;
+	}
+}
