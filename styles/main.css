@@ -1,14 +1,24 @@
 /* Colors */
 :root {
-	color: white;
-	background: black;
+	color: #e1f8ef;
+	background: #2c172a;
+}
+a {
+	color: #FF00F7;
+}
+a:hover,
+a:focus {
+	color: #FF005E;
+}
+a:visited {
+	color: #B000FF;
 }
 
 /* Media Queries */
 @media print {
 	:root {
-		color: black;
-		background-color: white;
+		color: #000000;
+		background-color: #ffffff;
 	}
 }
 @media (prefers-color-scheme: light) {
