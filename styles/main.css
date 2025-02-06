@@ -1,29 +1,78 @@
-/* Colors */
+/* Base Styling */
 :root {
-	color: #e1f8ef;
-	background: #2c172a;
-}
-a {
-	color: #FF00F7;
-}
-a:hover,
-a:focus {
-	color: #FF005E;
-}
-a:visited {
-	color: #B000FF;
+	/* Colors */
+	color: #E1F8EF;
+	background-color: var(--root-background);
+	/* Text */
+	font-family: Consolas, monospace;
+	/* Theme colors */
+	--root-background:          oklch(30.0% 0.01 270);
+	--body-background:          oklch(20.0% 0.01 270);
+	--header-footer-background: oklch(25.0% 0.04 270);
+	--nav-background:           oklch(22.5% 0.04 270);
+	--nav-highlight:            oklch(37.5% 0.05 270);
+	--border-color:             oklch(45.0% 0.01 270);
+	--text-color:               oklch(95.0% 0.03 170);
 }
 
-/* Media Queries */
-@media print {
-	:root {
-		color: #000000;
-		background-color: #ffffff;
-	}
+body {
+	background-color: var(--body-background);
 }
+
+/* General Anchor Styling */
+a { color: oklch(69% 0.3 330); }
+a:visited { color: oklch(50% 0.3 330); }
+a:hover, a:focus { color: oklch(69% 0.25 13); }
+a:visited:hover, a:visited:focus { color: oklch(50% 0.25 13); }
+
+/* Page Organization */
+body {
+	/* Styling */
+	box-shadow: 0px 0px 5px 5px #0000007F;
+	/* Sizing */
+	max-width: 192ch;
+	width: 95%;
+	/* Box */
+	margin: auto;
+	border: 3px solid var(--border-color);
+	border-top: 0;
+	border-bottom: 0;
+	border-radius: 2px;
+}
+
+/* Move footer to bottom of page. */
+body {
+	min-height: 100vh; /* Body takes up at least whole height*/
+	display: flex;
+	flex-direction: column;
+}
+main {
+	flex-grow: 1;
+}
+
+
+/* Media Queries */
 @media (prefers-color-scheme: light) {
 	:root {
-		color: gray;
-		background-color: black;
+		color: black;
+		--root-background:          #FFFFFF;
+		--body-background:          #FFFFFF;
+		--header-footer-background: #BFBFBF;
+		--nav-background:           #CFCFCF;
+		--nav-highlight:            #DFDFDF;
+		--border-color:             #000000;
+	}
+}
+@media print {
+	/* Optimal colors for printing. */
+	* { background-color: #FFFFFF !important; } /* White background. No ink spent on background. */
+	:root {
+		color: #000000;
+		--root-background:          #FFFFFF;
+		--body-background:          #FFFFFF;
+		--header-footer-background: #BFBFBF;
+		--nav-background:           #CFCFCF;
+		--nav-highlight:            #DFDFDF;
+		--border-color:             #000000;
 	}
 }
