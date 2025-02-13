@@ -1,0 +1,11 @@
+#reviews {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(5, fit-content(100%));
+}
+#reviews blockquote {
+	background-color: oklch(10.0% 0.01 270);
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 0.5em 2ch;
+}
