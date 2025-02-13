@@ -1,7 +1,7 @@
 /* Base Styling */
 :root {
 	/* Colors */
-	color: #E1F8EF;
+	color: var(--text-color);
 	background-color: var(--root-background);
 	/* Text */
 	font-family: Consolas, monospace;
@@ -30,7 +30,7 @@ body {
 	/* Styling */
 	box-shadow: 0px 0px 5px 5px #0000007F;
 	/* Sizing */
-	max-width: 192ch;
+	max-width: 160ch;
 	width: 95%;
 	/* Box */
 	margin: auto;
@@ -48,6 +48,7 @@ body {
 }
 main {
 	flex-grow: 1;
+	padding: 1em 2ch;
 }
 
 
