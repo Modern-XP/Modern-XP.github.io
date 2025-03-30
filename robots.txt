@@ -1,0 +1,5 @@
+# Beep boop! Hello!
+# Say hi to Iris, Dusk, and Chip for me!
+
+User-agent: *
+Disallow: /
