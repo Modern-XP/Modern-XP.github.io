@@ -1,78 +1,112 @@
-/* Base Styling */
+
 :root {
-	/* Colors */
-	color: #E1F8EF;
-	background-color: var(--root-background);
-	/* Text */
-	font-family: Consolas, monospace;
-	/* Theme colors */
-	--root-background:          oklch(30.0% 0.01 270);
-	--body-background:          oklch(20.0% 0.01 270);
-	--header-footer-background: oklch(25.0% 0.04 270);
-	--nav-background:           oklch(22.5% 0.04 270);
-	--nav-highlight:            oklch(37.5% 0.05 270);
-	--border-color:             oklch(45.0% 0.01 270);
-	--text-color:               oklch(95.0% 0.03 170);
+	/*? Variables */
+	--text-color:   #FFFFFF;
+	--border-color: #FFFFFF;
+	--bg-color:       #111111;
+	--headfooter-bgc: #222222;
+	--nav-bgc:           #171717;
+	--nav-highlight-bgc: #333333;
+	--quote-bdr: #7E4B76;
+	--quote-bgc: #1E1829;
+	/*? Styling */
+	color: var(--text-color);
+	background-color: var(--bg-color);
+	border-color: var(--border-color);
+	/*? Text */
+	font-family: 'Consolas', monospace;
 }
 
-body {
-	background-color: var(--body-background);
-}
+/*? Anchor Colors */
+a { color: #01ae63 }
+a:visited { color: #ba2c1c; }
+a:hover, a:focus { color: #60f49e; }
+a:hover:visited, a:focus:visited { color: #fe6e59; }
 
-/* General Anchor Styling */
-a { color: oklch(69% 0.3 330); }
-a:visited { color: oklch(50% 0.3 330); }
-a:hover, a:focus { color: oklch(69% 0.25 13); }
-a:visited:hover, a:visited:focus { color: oklch(50% 0.25 13); }
+/*? Required */
+.required { color: #ff7f50; }
 
-/* Page Organization */
 body {
-	/* Styling */
-	box-shadow: 0px 0px 5px 5px #0000007F;
-	/* Sizing */
-	max-width: 192ch;
-	width: 95%;
-	/* Box */
+	/*? Center content. */
 	margin: auto;
-	border: 3px solid var(--border-color);
-	border-top: 0;
-	border-bottom: 0;
-	border-radius: 2px;
-}
-
-/* Move footer to bottom of page. */
-body {
-	min-height: 100vh; /* Body takes up at least whole height*/
+	/* border: solid var(--border-color); */
+	/* border-width: 0 3px; */
+	/*? Sizing */
+	min-height: 100vh;
+	/*? Flexbox */
 	display: flex;
 	flex-direction: column;
+	/*? Styling */
+	background-color: var(--bg-color);
+	box-shadow: 0 0 15px 15px #0000007F;
 }
 main {
-	flex-grow: 1;
+	margin: 1em auto;
+	/* padding: 1em 20ch; */
+	max-width: 96ch;
+	width: 90%;
+}
+main > p { line-height: 1.6em; }
+main > p::first-letter {
+	font-size: 2em;
+	margin-left: 2ch;
+}
+main ol {
+	list-style: none;
+	padding-left: 4ch;
+}
+main ol h3 {
+	translate: -4ch 0;
+}
+
+blockquote {
+	font-style: italic;
+	background-color: var(--quote-bgc);
+	border-left: 3px solid var(--quote-bdr);
+	border-radius: 1em;
+	padding: 1em 2ch;
 }
 
 
-/* Media Queries */
-@media (prefers-color-scheme: light) {
-	:root {
-		color: black;
-		--root-background:          #FFFFFF;
-		--body-background:          #FFFFFF;
-		--header-footer-background: #BFBFBF;
-		--nav-background:           #CFCFCF;
-		--nav-highlight:            #DFDFDF;
-		--border-color:             #000000;
+/*? Size Queries */
+@media only screen and (max-width: 1000px) {
+	main {
+		padding: 1em 5ch;
+		max-width: auto;
+		width: auto;
 	}
+}
+
+/*? Style Queries */
+@media only screen and (prefers-color-scheme: light) {
+	/*? Light mode users. */
+	:root {
+		--text-color:   #000;
+		--border-color: #000;
+		--bg-color:       #FFF;
+		--headfooter-bgc: #999;
+		--nav-bgc:           #BBB;
+		--nav-highlight-bgc: #DDD;
+		--quote-bdr: #8FA368;
+		--quote-bgc: #D4E5B6;
+	}
+	a { color: oklch(10% 0.1 200); }
+	a:visited { color: oklch(10% 0.2 300); }
+	a:hover, a:focus { color: oklch(40% 0.1 200); }
+	a:visited:hover, a:visited:focus { color: oklch(40% 0.2 300); }
 }
 @media print {
-	/* Optimal colors for printing. */
-	* { background-color: #FFFFFF !important; } /* White background. No ink spent on background. */
-	:root {
-		color: #000000;
-		--root-background:          #FFFFFF;
-		--body-background:          #FFFFFF;
-		--header-footer-background: #BFBFBF;
-		--nav-background:           #CFCFCF;
-		--nav-highlight:            #DFDFDF;
-		--border-color:             #000000;
+	/*? Clear backgrounds for printing. */
+	* {
+		--text-color:   #000 !important;
+		--border-color: #000 !important;
+		--bg-color:       #FFF !important;
+		--headfooter-bgc: #FFF !important;
+		--nav-bgc:           #FFF !important;
+		--nav-highlight-bgc: #FFF !important;
+		--quote-bdr: #000 !important;
+		--quote-bgc: #EEE !important;
 	}
+	a { color: #555 !important; }
+	a:visited { color: #111 !important; }
 }
