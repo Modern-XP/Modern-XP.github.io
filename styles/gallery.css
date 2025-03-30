@@ -1,0 +1,29 @@
+.gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+	column-gap: 2ch;
+	row-gap: 1em;
+}
+.gallery div {
+	border: 2px solid;
+	background-color: var(--bg-color);
+}
+.gallery img {
+	width: 100%;
+	transition: transform 0.2s;
+}
+.gallery img:hover { transform: scale(2); }
+.gallery label {
+	text-align: center;
+	width: 100%;
+	padding: 1em 2ch;
+}
+
+/*? Queries */
+@media screen and (max-width: 1200px) {
+	.gallery img:hover { transform: scale(1.5); }
+}
+@media screen and (max-width: 1000px) {
+	.gallery img:hover { transform: none; }
+}
