@@ -1,37 +1,94 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>JelleySite</title>
-	<link rel="stylesheet" href="styles/main.css" />
-	<link rel="stylesheet" href="styles/header_nav_footer.css" />
+	<title>Pondworks</title>
+	<base href="./">
+	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="styles/headfooter.css">
+	<link rel="stylesheet" href="styles/nav.css">
+	<link rel="stylesheet" href="styles/gallery.css">
 </head>
 <body>
 	<header>
-		<h1>Welcome to JelleySite!</h1>
+		<div>
+			<img src="https://avatars.githubusercontent.com/u/170996705?v=4?s=64" alt="The Pondworks Logo">
+			<h1>Pondworks</h1>
+		</div>
 	</header>
 	<nav id="nav_menu">
 		<ul>
-			<li><a href="index.html" class="currentPage">Home</a></li>
-			<li><a href="index" class="currentPage">Home</a></li>
-			<li><a href="index">Home</a>
-				<ul>
-					<li><a href="index">Home123</a></li>
-					<li><a href="index">Home123456</a></li>
-					<li><a href="index">Home123456789</a></li>
-					<li><a href="index">Home</a></li>
-				</ul>
-			</li>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="pages/projects.html">Projects</a></li>
+			<li><a href="pages/updates.html">Updates</a></li>
+			<li><a href="pages/about.html">About Us</a></li>
 		</ul>
 	</nav>
+	<include src="includes/nav.html"></include>
 	<main>
+		<h2>Welcome!</h2>
 		<p>
-			//
+			We have a passion for game design and wish to make something meaningful from that.
+			We hope you have as much fun playing our games as we have fun making them.
 		</p>
+		<h3>Here are some cool debug images from projects!</h3>
+		<div class="gallery">
+			<div>
+				<img id="image_1" src="media/EdgeDetectionShader.png" alt="A grayscale image with a black shapes with white edges similar to a sobel filter.">
+				<label for="image_1">Edge detection using normals.</label>
+			</div>
+			<div>
+				<img id="image_2" src="media/MarchingCubes.png" alt="An image of a generated mesh within a cubic area.">
+				<label for="image_2">Terrain generated via the marching cubes algorithm.</label>
+			</div>
+			<div>
+				<img id="image_3" src="media/NewtonMethod.png" alt="A fractal image with three small rings drawn over it.">
+				<label for="image_3">Newton's Fractal with roots indicated by circles.</label>
+			</div>
+			<!-- <div>
+				<img id="image_4" src="media/image_4.png" alt="Image 4">
+				<label for="image_4">Terrain generated via the marching cubes algorithm.</label>
+			</div> -->
+			<!-- <div>
+				<img id="image_5" src="media/image_5.png" alt="Image 5">
+				<label for="image_5">Terrain generated via the marching cubes algorithm.</label>
+			</div> -->
+			<!-- <div>
+				<img id="image_6" src="media/image_6.png" alt="Image 6">
+				<label for="image_6">Terrain generated via the marching cubes algorithm.</label>
+			</div> -->
+		</div>
 	</main>
 	<footer>
-		<p>&hearts; You're Valid &hearts;</p>
+		<p>
+			&hearts; You're valid! &hearts;
+		</p>
 	</footer>
 </body>
 </html>
+
+<!-- INSTRUCTIONS:
+# Homepage + Two
+
+In this assignment you will fix any issues I pointed out in the previous assignment and you will update the feedback document.
+
+Create two additional comprehensive web pages for your final project.
+
+Please include at least the items listed below.
+
+	Project has a meaningful name and tagline
+	Website consists of four pages. Top-level index plus three "Under Construction"
+	All web pages have the same look and feel with a unified color scheme
+	All web pages look professional 
+	All web pages are focused on the topic and reflect insight
+	All Web pages are responsive
+	The HTML is well-formed and free of errors
+	The CSS is in at least one external stylesheet, is well-formed, and free of errors
+	Navigation works; including to the "Under Construction" pages
+	The "Under Construction" pages include an h1 element that states their purpose
+	Your zip file contains all needed resources
+	Your project file structure is well-formed
+	All resources follow web naming standards
+
+-->
