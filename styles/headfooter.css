@@ -1,0 +1,44 @@
+
+/*? Header stuff */
+header {
+	background-color: var(--headfooter-bgc);
+	margin: 0;
+	border-bottom: 1px solid var(--border-color);
+	/*? Display */
+	padding: 1em 0;
+}
+header div {
+	/*? Grid */
+	width: fit-content;
+	margin: 0 auto;
+	display: grid;
+	column-gap: 1.5ch;
+	grid-template-columns: auto auto;
+}
+header img {
+	/* display: inline-block; */
+	height: 2.75em;
+}
+header h1 {
+	margin: 0;
+	/* padding-left: 1ch; */
+	text-align: center;
+}
+header h2 {
+	margin: 0;
+	padding: 0;
+	grid-column: 2 / 3;
+	/* text-align: center; */
+}
+
+/*? Footer stuff */
+footer {
+	/*? Styling */
+	background-color: var(--headfooter-bgc);
+	text-align: center;
+	padding: 1em 1ch;
+	/*? Positioning */
+	bottom: 0px;
+	margin-top: auto;
+	border-top: 2px solid var(--border-color);
+}
