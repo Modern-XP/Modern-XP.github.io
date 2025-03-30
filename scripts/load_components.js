@@ -21,10 +21,7 @@ const includeHTML = (element) => {
 		.then(response => response.text())
 		.then(data => { element.innerHTML = data; })
 		.catch(error => console.error(`Error loading '${filePath}': `, error));
-	if (element.children.length === 0) {
-		console.log("No children.");
-		return;
-	}
+	if (element.children.length === 0) return;
 	console.log(element, element.children, element.innerHTML);
 	const firstChild = element.children[0];
 	replaceElement(element, firstChild);
