@@ -1,5 +1,9 @@
 # Beep boop! Hello!
 # Say hi to Iris, Dusk, and Chip for me!
 
+User-agent: GPTBot
+Crawl-delay: 30
+Disallow: /
+
 User-agent: *
 Disallow: /
