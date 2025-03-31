@@ -49,3 +49,10 @@
 		width: auto !important;
 	}
 }
+
+/* Temp solution. May use slick-nav later. */
+@media only screen and (max-width: 450px) {
+	#nav_menu {
+		font-size: 0.9em;
+	}
+}
