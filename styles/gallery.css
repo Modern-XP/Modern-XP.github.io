@@ -8,6 +8,9 @@
 .gallery div {
 	border: 2px solid;
 	background-color: var(--bg-color);
+	/* Grid */
+	display: grid;
+	grid-template-rows: auto 1fr;
 }
 .gallery img {
 	width: 100%;
@@ -15,9 +18,12 @@
 }
 .gallery img:hover { transform: scale(2); }
 .gallery label {
-	text-align: center;
+	display: block;
+	/* text-align: center; */
 	width: 100%;
-	padding: 1em 2ch;
+	margin: 0;
+	padding: 0.5em 2ch;
+	box-sizing: border-box;
 }
 
 /*? Queries */
