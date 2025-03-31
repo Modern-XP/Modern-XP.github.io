@@ -1,0 +1,8 @@
+
+main ul {
+	list-style: none;
+	padding-left: 4ch;
+}
+main ul h3 {
+	translate: -4ch 0;
+}

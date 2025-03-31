@@ -51,13 +51,6 @@ main > p::first-letter {
 	font-size: 2em;
 	margin-left: 2ch;
 }
-main ol {
-	list-style: none;
-	padding-left: 4ch;
-}
-main ol h3 {
-	translate: -4ch 0;
-}
 
 blockquote {
 	font-style: italic;
