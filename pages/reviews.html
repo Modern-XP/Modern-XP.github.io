@@ -3,31 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>JelleySite</title>
+	<title>Pondworks - Reviews</title>
 	<base href="../">
 	<link rel="stylesheet" href="styles/main.css" />
 	<link rel="stylesheet" href="styles/header_nav_footer.css" />
 	<link rel="stylesheet" href="styles/reviews.css" />
 	<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/170996705?v=4?s=32" type="image/x-icon">
+	<script src="scripts/load_components.js"></script>
 </head>
 <body>
 	<header>
 		<h1>Real Reviews!</h1>
 	</header>
-	<nav id="nav_menu">
-		<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a href="pages/reviews.html" class="currentPage">Reviews</a></li>
-			<li><a href="index">Test</a>
-				<ul>
-					<li><a href="index">Test123</a></li>
-					<li><a href="index">Test123456</a></li>
-					<li><a href="index">Test123456789</a></li>
-					<li><a href="index">Test</a></li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
+	<include src="includes/nav.html"></include>
 	<main>
 		<h2>Check out real reviews our visitors have left!</h2>
 		<div id="reviews">
@@ -49,8 +37,6 @@
 			</blockquote>
 		</div>
 	</main>
-	<footer>
-		<p>&hearts; You're Valid &hearts;</p>
-	</footer>
+	<include src="includes/footer.html"></include>
 </body>
 </html>
