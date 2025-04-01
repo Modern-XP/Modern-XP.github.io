@@ -1,0 +1,22 @@
+#members {
+	list-style: none;
+	padding: 0;
+}
+#members li {
+	background-color: var(--div-bgc);
+	display: grid;
+	grid-template-columns: auto auto 1fr;
+	column-gap: 1ch;
+	align-items: center;
+	/* Radii */
+	border-top-left-radius: 64px;
+	border-bottom-left-radius: 64px;
+	margin-bottom: 2.5ch;
+	box-shadow: 0 0 0.5ch 0.5ch var(--div-bgc);
+}
+#members img {
+	border: 2px solid var(--div-bdr);
+	border-radius: 50%;
+	padding: 2px;
+	margin: 5px;
+}
