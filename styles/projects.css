@@ -1,8 +1,15 @@
 
 main ul {
 	list-style: none;
-	padding-left: 4ch;
+	padding-left: 0;
 }
-main ul h3 {
-	translate: -4ch 0;
+main ul li {
+	background-color: #0C0C0C;
+	/* Border */
+	border: 0 solid #757575;
+	border-left-width: 2px;
+	border-radius: 2px 5px 5px 2px;
+	/* Display */
+	margin: 1em 0;
+	padding: 1px 2ch;
 }
