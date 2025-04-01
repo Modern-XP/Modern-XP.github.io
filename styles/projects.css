@@ -4,9 +4,9 @@ main ul {
 	padding-left: 0;
 }
 main ul li {
-	background-color: #0C0C0C;
+	background-color: var(--div-bgc);
 	/* Border */
-	border: 0 solid #757575;
+	border: 0 solid var(--div-bdr);
 	border-left-width: 2px;
 	border-radius: 2px 5px 5px 2px;
 	/* Display */

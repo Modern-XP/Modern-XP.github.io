@@ -9,6 +9,8 @@
 	--nav-highlight-bgc: #333333;
 	--quote-bdr: #7E4B76;
 	--quote-bgc: #1E1829;
+	--div-bdr: #757575;
+	--div-bgc: #0C0C0C;
 	/*? Styling */
 	color: var(--text-color);
 	background-color: var(--bg-color);
@@ -82,6 +84,8 @@ blockquote {
 		--nav-highlight-bgc: #DDD;
 		--quote-bdr: #8FA368;
 		--quote-bgc: #D4E5B6;
+		--div-bdr: #757575;
+		--div-bgc: #D4D4D4;
 	}
 	a { color: oklch(10% 0.1 200); }
 	a:visited { color: oklch(10% 0.2 300); }
