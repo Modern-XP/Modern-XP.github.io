@@ -12,4 +12,13 @@ main ul li {
 	/* Display */
 	margin: 1em 0;
 	padding: 1px 2ch;
+	/* Transition */
+	transition-property: border-left-width, width, translate;
+	transition-timing-function: ease;
+	transition-duration: 0.1s;
+}
+main ul li:hover {
+	border-left-width: 5px;
+	width: calc(100% - 4ch - 3px);
+	translate: -3px 0;
 }
