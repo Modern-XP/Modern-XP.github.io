@@ -13,7 +13,7 @@
 	--div-bgc: #0C0C0C;
 	/*? Styling */
 	color: var(--text-color);
-	background-color: var(--bg-color);
+	background-color: var(--headfooter-bgc);
 	border-color: var(--border-color);
 	/*? Text */
 	font-family: 'Consolas', monospace;
@@ -40,7 +40,7 @@ body {
 	flex-direction: column;
 	/*? Styling */
 	background-color: var(--bg-color);
-	box-shadow: 0 0 15px 15px #0000007F;
+	/* box-shadow: 0 0 15px 15px #0000007F; */
 }
 main {
 	margin: 1em auto;
