@@ -1,9 +1,9 @@
 
-main ul {
+#projects {
 	list-style: none;
 	padding-left: 0;
 }
-main ul li {
+#projects li {
 	background-color: var(--div-bgc);
 	/* Border */
 	border: 0 solid var(--div-bdr);
@@ -17,8 +17,15 @@ main ul li {
 	transition-timing-function: ease;
 	transition-duration: 0.1s;
 }
-main ul li:hover {
+#projects li:hover {
 	border-left-width: 5px;
 	width: calc(100% - 4ch - 3px);
 	translate: -3px 0;
+}
+#projects a {
+	width: fit-content;
+	margin-right: auto;
+}
+#projects h3:hover {
+	text-decoration-line: underline;
 }
