@@ -40,6 +40,7 @@ const includeHTML = (element) => {
 				element.innerHTML = element.innerHTML.replace(rgxTest,params[key]);
 			});
 			//? Add includes recursively.
+			//TODO: Add filePath to file trace to prevent looped includes.
 			const firstChild = element.children[0];
 			const subIncludes = filterChildren(firstChild, "include");
 			if (subIncludes) { includeMain(subIncludes, filePath); } // Make async to not be slow.
@@ -52,6 +53,8 @@ const includeHTML = (element) => {
 };
 
 const includeMain = (includes, filePath) => {
+	//TODO: Use file trace to prevent looped includes.
+	//? Replace looped includes with div that says 'Looped include.'.
 	for (const include of includes) {
 		if (include.getAttribute("src") == filePath) continue;
 		includeHTML(include);
