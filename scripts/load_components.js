@@ -20,13 +20,13 @@ const replaceElement = (from, to) => {
 };
 
 const filterChildren = (element, selector) => [...element.children].filter(elm => elm.matches(selector));
+const paramToObject = paramElements => Object.fromEntries(paramElements.map(elm => [elm.getAttribute("name"), elm.value]));
 
-const includeHTML = (element) => {
+const includeHTML = (element, fileTrace) => {
 	//? Get param tags within include element.
-	const paramTags = filterChildren(element, "param");
 	//? Create an object out of the params' names and values.
-	//TODO: Might look into shorter way of achieving this for later indexing.
-	const params = Object.fromEntries(paramTags.map((elm) => [elm.getAttribute("name"), elm.value]));
+	//TODO: Might look into better ways of achieving this for improved indexing.
+	const params = paramToObject(filterChildren(element, "param"));
 	//
 	const filePath = element.getAttribute("src");
 	fetch(filePath)
@@ -34,34 +34,43 @@ const includeHTML = (element) => {
 		.then(data => {
 			element.innerHTML = data;
 			//? Replace params with values if they exist.
-			Object.keys(params).forEach( key => {
+			Object.keys(params).forEach(key => {
 				const rgxTest = getParamRegex(key);
 				if (!rgxTest.test(element.innerHTML)) return;
 				element.innerHTML = element.innerHTML.replace(rgxTest,params[key]);
 			});
-			//? Add includes recursively.
-			//TODO: Add filePath to file trace to prevent looped includes.
-			const firstChild = element.children[0];
-			const subIncludes = filterChildren(firstChild, "include");
-			if (subIncludes) { includeMain(subIncludes, filePath); } // Make async to not be slow.
 			//? Replace the include element with the file contents.
 			//TODO: currently can only use one contained element in files.
 			//TODO: will look for solution to include whole file contents later.
+			const firstChild = element.children[0];
 			replaceElement(element, firstChild);
+			//? Send child includes to be worked on asynchronously.
+			return filterChildren(firstChild, "include");
+		})
+		.then(children => {
+			//? Recurse through child includes until an end is reached, or a loop is found.
+			if (children.length === 0) return;
+			includeMain(children, fileTrace);
 		})
 		.catch(error => console.error(`Error loading '${filePath}': `, error));
 };
 
-const includeMain = (includes, filePath) => {
-	//TODO: Use file trace to prevent looped includes.
+const includeMain = (includes, fileTrace) => {
 	//? Replace looped includes with div that says 'Looped include.'.
 	for (const include of includes) {
-		if (include.getAttribute("src") == filePath) continue;
-		includeHTML(include);
+		//? Skip already included file to prevent infinite recursion.
+		const filePath = include.getAttribute("src");
+		if (fileTrace.includes(filePath)) continue;
+		//? Create a copy of the fileTrace with the next filePath to use as a trace.
+		//? The copy allows different branches to use the same include without stepping on each other.
+		includeHTML(include, [...fileTrace, filePath]);
 	}
 };
 
 document.addEventListener("DOMContentLoaded", () => {
 	const includes = getElements("include");
-	includeMain(includes)
+	//? Get current page uri to add to fileTrace.
+	let uri = window.location.pathname.substring(1);
+	if (!uri) uri = "index.html";
+	includeMain(includes, [uri])
 });
