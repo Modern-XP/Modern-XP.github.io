@@ -23,6 +23,7 @@
 	translate: -3px 0;
 }
 #projects a {
+	display: block;
 	width: fit-content;
 	margin-right: auto;
 }
