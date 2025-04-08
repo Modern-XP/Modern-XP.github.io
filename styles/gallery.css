@@ -14,9 +14,14 @@
 }
 .gallery img {
 	width: 100%;
-	transition: transform 0.2s;
+	transition-property: transform border;
+	transition-duration: 0.2s;
+	transition-timing-function: ease linear;
 }
-.gallery img:hover { transform: scale(2); }
+.gallery img:hover {
+	transform: scale(2);
+	border: 1px solid;
+}
 .gallery label {
 	display: block;
 	/* text-align: center; */
