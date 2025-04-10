@@ -47,11 +47,7 @@ const includeHTML = (element, fileTrace) => {
 			//? Send child includes to be worked on asynchronously.
 			return filterChildren(firstChild, "include");
 		})
-		.then(children => {
-			//? Recurse through child includes until an end is reached, or a loop is found.
-			if (children.length === 0) return;
-			includeMain(children, fileTrace);
-		})
+		.then(children => includeMain(children, fileTrace)) //? includeMain's foreach loop ignores empty arrays.
 		.catch(error => console.error(`Error loading '${filePath}': `, error));
 };
 
