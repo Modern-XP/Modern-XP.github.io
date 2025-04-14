@@ -22,6 +22,23 @@ const replaceElement = (from, to) => {
 const filterChildren = (element, selector) => [...element.children].filter(elm => elm.matches(selector));
 const paramToObject = paramElements => Object.fromEntries(paramElements.map(elm => [elm.getAttribute("name"), elm.value]));
 
+const processIncludeData = (elm, data) => {
+	elm.innerHTML = data;
+	//? Replace params with values if they exist.
+	Object.keys(params).forEach(key => {
+		const rgxTest = getParamRegex(key);
+		if (!rgxTest.test(elm.innerHTML)) return;
+		elm.innerHTML = elm.innerHTML.replace(rgxTest,params[key]);
+	});
+	//? Replace the include element with the file contents.
+	//TODO: currently can only use one contained element in files.
+	//TODO: will look for solution to include whole file contents later.
+	const firstChild = elm.children[0];
+	replaceElement(elm, firstChild);
+	//? Send child includes to be worked on asynchronously.
+	return filterChildren(firstChild, "include");
+};
+
 const includeHTML = (element, fileTrace) => {
 	//? Get param tags within include element.
 	//? Create an object out of the params' names and values.
@@ -31,22 +48,7 @@ const includeHTML = (element, fileTrace) => {
 	const filePath = element.getAttribute("src");
 	fetch(filePath)
 		.then(response => response.text())
-		.then(data => {
-			element.innerHTML = data;
-			//? Replace params with values if they exist.
-			Object.keys(params).forEach(key => {
-				const rgxTest = getParamRegex(key);
-				if (!rgxTest.test(element.innerHTML)) return;
-				element.innerHTML = element.innerHTML.replace(rgxTest,params[key]);
-			});
-			//? Replace the include element with the file contents.
-			//TODO: currently can only use one contained element in files.
-			//TODO: will look for solution to include whole file contents later.
-			const firstChild = element.children[0];
-			replaceElement(element, firstChild);
-			//? Send child includes to be worked on asynchronously.
-			return filterChildren(firstChild, "include");
-		})
+		.then(data => processIncludeData(element, data))
 		.then(children => {
 			//? Recurse through child includes until an end is reached, or a loop is found.
 			if (children.length === 0) return;
