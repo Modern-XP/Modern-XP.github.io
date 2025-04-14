@@ -7,6 +7,7 @@ const getElement = (selector) => document.querySelector(selector);
 const getElements = (selector) => document.querySelectorAll(selector);
 
 const rgxWhitespace = /\s*/g;
+const rgxEscapeSection = /\$\{(?<code>.*)\}/g;
 const rgxParams = /\$\{param\.[\w]+\}/ig;
 
 const getParamRegex = (name) => new RegExp(`\\$\\{param\\.${name}\\}`,'i');
@@ -23,16 +24,20 @@ const filterChildren = (element, selector) => [...element.children].filter(elm =
 const paramToObject = paramElements => Object.fromEntries(paramElements.map(elm => [elm.getAttribute("name"), elm.value]));
 
 const processIncludeData = (elm, data) => {
-	elm.innerHTML = data;
+	//? Get param tags within include element.
+	//? Create an object out of the params' names and values.
+	//TODO: Might look into better ways of achieving this for improved indexing.
+	const params = paramToObject(filterChildren(elm, "param"));
 	//? Replace params with values if they exist.
 	Object.keys(params).forEach(key => {
 		const rgxTest = getParamRegex(key);
-		if (!rgxTest.test(elm.innerHTML)) return;
-		elm.innerHTML = elm.innerHTML.replace(rgxTest,params[key]);
+		if (!rgxTest.test(data)) return;
+		data = data.replace(rgxTest,params[key]);
 	});
 	//? Replace the include element with the file contents.
 	//TODO: currently can only use one contained element in files.
 	//TODO: will look for solution to include whole file contents later.
+	elm.innerHTML = data;
 	const firstChild = elm.children[0];
 	replaceElement(elm, firstChild);
 	//? Send child includes to be worked on asynchronously.
@@ -40,11 +45,6 @@ const processIncludeData = (elm, data) => {
 };
 
 const includeHTML = (element, fileTrace) => {
-	//? Get param tags within include element.
-	//? Create an object out of the params' names and values.
-	//TODO: Might look into better ways of achieving this for improved indexing.
-	const params = paramToObject(filterChildren(element, "param"));
-	//
 	const filePath = element.getAttribute("src");
 	fetch(filePath)
 		.then(response => response.text())
