@@ -44,7 +44,7 @@ const processIncludeData = (elm, data) => {
 	return filterChildren(firstChild, "include");
 };
 
-const includeHTML = (element, fileTrace) => {
+const processInclude = (element, fileTrace) => {
 	const filePath = element.getAttribute("src");
 	fetch(filePath)
 		.then(response => response.text())
@@ -63,7 +63,7 @@ const includeMain = (includes, fileTrace) => {
 		if (fileTrace.includes(filePath)) continue;
 		//? Create a copy of the fileTrace with the next filePath to use as a trace.
 		//? The copy allows different branches to use the same include without stepping on each other.
-		includeHTML(include, [...fileTrace, filePath]);
+		processInclude(include, [...fileTrace, filePath]);
 	}
 };
 
