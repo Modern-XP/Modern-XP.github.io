@@ -49,15 +49,13 @@ const includeHTML = (element, fileTrace) => {
 	fetch(filePath)
 		.then(response => response.text())
 		.then(data => processIncludeData(element, data))
-		.then(children => {
-			//? Recurse through child includes until an end is reached, or a loop is found.
-			if (children.length === 0) return;
-			includeMain(children, fileTrace);
-		})
+		.then(children => includeMain(children, fileTrace))
 		.catch(error => console.error(`Error loading '${filePath}': `, error));
 };
 
 const includeMain = (includes, fileTrace) => {
+	//? Don't need to put this here, but if falsy, return immediately.
+	if (!includes) return;
 	//? Replace looped includes with div that says 'Looped include.'.
 	for (const include of includes) {
 		//? Skip already included file to prevent infinite recursion.
