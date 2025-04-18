@@ -73,4 +73,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	let uri = window.location.pathname.substring(1);
 	if (!uri) uri = "index.html";
 	includeMain(includes, [uri])
+	//TODO: Use signal to indicate when the includes are done for subsequent scripts.
 });
