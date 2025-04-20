@@ -1,0 +1,42 @@
+:root {
+	--old-price-col: #696969;
+	--old-price-bgc: #202020;
+	--price-col: #6ad03b;
+	--price-bgc: #224611;
+}
+
+.price {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	width: fit-content;
+	border: 2px solid;
+	border-radius: 4px;
+	background: var(--old-price-bgc);
+}
+
+.prices {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: end;
+	padding: 0 1ch;
+}
+
+.price_original {
+	color: var(--old-price-col);
+	font-style: oblique;
+	text-decoration: line-through solid;
+	font-size: 80%;
+}
+.price_sale {
+	color: var(--price-col);
+	font-size: 150%;
+	font-weight: bold;
+}
+.sale_amount {
+	color: var(--price-col);
+	background-color: var(--price-bgc);
+	font-size: 200%;
+	font-weight: bold;
+	padding: 0 1ch;
+}
