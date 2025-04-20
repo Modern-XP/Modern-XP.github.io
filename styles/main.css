@@ -103,6 +103,8 @@ blockquote {
 		--nav-highlight-bgc: #FFF !important;
 		--quote-bdr: #000 !important;
 		--quote-bgc: #EEE !important;
+		--div-bdr: #000 !important;
+		--div-bgc: #DDD !important;
 	}
 	a { color: #555 !important; }
 	a:visited { color: #111 !important; }
