@@ -34,6 +34,4 @@ const addPrices = () => {
 	}
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-	addPrices();
-});
+document.addEventListener("DOMContentLoaded", addPrices);
