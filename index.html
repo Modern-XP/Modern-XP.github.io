@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="styles/gallery.css">
 	<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/170996705?v=4?s=32" type="image/x-icon">
 	<script src="scripts/load_components.js"></script>
+	<script src="scripts/gallery_loader.js"></script>
 </head>
 <body>
 	<header>
@@ -27,32 +28,7 @@
 			We hope you have as much fun playing our games as we have fun making them.
 		</p>
 		<h3>Here are some cool debug images from projects!</h3>
-		<div class="gallery">
-			<div>
-				<img id="image_1" src="media/EdgeDetectionShader.png" alt="A grayscale image with black shapes with white edges similar to a sobel filter.">
-				<label for="image_1">Edge detection using normals.</label>
-			</div>
-			<div>
-				<img id="image_2" src="media/MarchingCubes.png" alt="An image of a generated mesh within a cubic chunk.">
-				<label for="image_2">Terrain generated via the marching cubes algorithm.</label>
-			</div>
-			<div>
-				<img id="image_3" src="media/NewtonMethod.png" alt="A fractal image with three small rings drawn on it.">
-				<label for="image_3">Newton's Fractal with roots indicated by circles.</label>
-			</div>
-			<div>
-				<img id="image_4" src="media/SmoothMarchingCubes.png" alt="An image of a smooth generated mesh.">
-				<label for="image_4">A smoother improved version of the marching cubes algorithm.</label>
-			</div>
-			<!-- <div>
-				<img id="image_5" src="media/image_5.png" alt="Image 5">
-				<label for="image_5">Image 5.</label>
-			</div> -->
-			<!-- <div>
-				<img id="image_6" src="media/image_6.png" alt="Image 6">
-				<label for="image_6">Image 6.</label>
-			</div> -->
-		</div>
+		<div class="gallery" id="gallery_index"></div>
 	</main>
 	<include src="includes/footer.html"></include>
 </body>
