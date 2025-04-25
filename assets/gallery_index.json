@@ -1,0 +1,26 @@
+[
+	{
+		"id":"edge_detection_shader",
+		"image_link":"assets/EdgeDetectionShader.png",
+		"caption":"Edge detection using normals.",
+		"alt_text":"A grayscale image with black shapes with white edges similar to a sobel filter."
+	},
+	{
+		"id":"old_marching_cubes",
+		"image_link":"assets/MarchingCubes.png",
+		"alt_text":"An image of a generated mesh within a cubic chunk.",
+		"caption":"Terrain generated via the marching cubes algorithm."
+	},
+	{
+		"id":"newtons_fractal",
+		"image_link":"assets/NewtonMethod.png",
+		"alt_text":"A fractal image with three small rings drawn on it.",
+		"caption":"Newton's Fractal with roots indicated by circles."
+	},
+	{
+		"id":"smooth_marching_cubes",
+		"image_link":"assets/SmoothMarchingCubes.png",
+		"alt_text":"An image of a smooth generated mesh.",
+		"caption":"A smoother improved version of the marching cubes algorithm."
+	}
+]
