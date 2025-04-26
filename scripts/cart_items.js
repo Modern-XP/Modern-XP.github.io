@@ -87,4 +87,4 @@ const main = async() => {
 	getElement("#game_list script").remove();
 };
 
-main();
+document.addEventListener("DOMContentLoaded", main);
