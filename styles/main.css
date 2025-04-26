@@ -11,6 +11,13 @@
 	--quote-bgc: #1E1829;
 	--div-bdr: #757575;
 	--div-bgc: #0C0C0C;
+	/*? Store */
+	--old-price-col: #A43B74;
+	--old-price-bgc: #4D1835;
+	--cart-col: #E6C27F;
+	--cart-bgc: #6A4f1B;
+	--price-col: #4FD596;
+	--price-bgc: #0C5B36;
 	/*? Styling */
 	color: var(--text-color);
 	background-color: var(--headfooter-bgc);
@@ -86,6 +93,13 @@ blockquote {
 		--quote-bgc: #D4E5B6;
 		--div-bdr: #757575;
 		--div-bgc: #D4D4D4;
+		/*? Store */
+		--old-price-col: #4D1835;
+		--old-price-bgc: #A43B74;
+		--cart-col: #6A4f1B;
+		--cart-bgc: #E6C27F;
+		--price-col: #0C5B36;
+		--price-bgc: #4FD596;
 	}
 	a { color: oklch(10% 0.1 200); }
 	a:visited { color: oklch(10% 0.2 300); }
@@ -105,6 +119,11 @@ blockquote {
 		--quote-bgc: #EEE !important;
 		--div-bdr: #000 !important;
 		--div-bgc: #DDD !important;
+		/*? Store */
+		--old-price-col: #000 !important;
+		--old-price-bgc: #FFF !important;
+		--price-col: #000 !important;
+		--price-bgc: #FFF !important;
 	}
 	a { color: #555 !important; }
 	a:visited { color: #111 !important; }
