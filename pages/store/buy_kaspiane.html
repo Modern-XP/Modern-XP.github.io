@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pondworks - Projects</title>
+	<base href="../../">
+	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="styles/headfooter.css">
+	<link rel="stylesheet" href="styles/nav.css">
+	<link rel="stylesheet" href="styles/store.css">
+	<link rel="stylesheet" href="styles/price_tag.css">
+	<link rel="stylesheet" href="styles/cart_dialog.css">
+	<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/170996705?v=4?s=32" type="image/x-icon">
+	<script src="scripts/load_components.js"></script>
+	<script src="scripts/store.js"></script>
+	<script src="scripts/price_tag.js"></script>
+</head>
+<body>
+	<header>
+		<div>
+			<img src="https://avatars.githubusercontent.com/u/170996705?v=4?s=64" alt="The Pondworks Logo">
+			<h1>Pondworks</h1>
+		</div>
+	</header>
+	<include src="includes/nav.html"></include>
+	<main>
+		<form action="pages/store/cart_view.html" method="PUT">
+			<input type="hidden" name="item_id" value="kaspiane_game">
+			<div id="store_description">
+				<h3>Kaspiane</h3>
+				<p>
+					The year is 2014, the world has been forever changed.
+					Humanity has pushed the demonic invaders back to hell.
+					Now you are tasked with clearing out the remnants, but the situation might be much different than it seems.
+					Use their own demonic powers to fight against them, all while searching for the truth of your own past.
+				</p>
+			</div>
+			<div id="store_tag">
+				<div class="price" base_price="20" sale_price="5"></div>
+				<button id="cart">ADD TO CART</button>
+			</div>
+		</form>
+		<dialog id="cart_dialog">
+			<div>
+				<p>Game added to cart.</p>
+				<button id="dialog_cart">View Cart</button>
+				<button id="dialog_close">Close</button>
+			</div>
+		</dialog>
+		<span>See also:</span>
+		<ul>
+			<li><a href="pages/store/buy_dynamic_districts.html">Dynamic Districts</a></li>
+			<!-- <li><a href="pages/store/buy_kaspiane.html">Kaspiane</a></li> -->
+			<li><a href="pages/store/buy_puff_pastry_panic.html">Puff Pastry Panic</a></li>
+		</ul>
+	</main>
+	<include src="includes/footer.html"></include>
+</body>
+</html>
