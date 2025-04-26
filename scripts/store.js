@@ -2,13 +2,17 @@
 
 const initializeCart = () => {
 	if (!sessionStorage.getItem("cart"))
-		sessionStorage.setItem("cart", "{ \"items\":[] }");
+		sessionStorage.setItem("cart", "[]");
 };
 
 const addToCart = (itemId) => {
 	let cart = JSON.parse(sessionStorage.cart);
-	// if (cart.items.includes(item)) return;
-	cart.items.push(itemId);
+	let cartItem = cart.find(i => i.id === itemId);
+	if (!cartItem) {
+		cartItem = { id:itemId, count:0 };
+		cart.push(cartItem);
+	}
+	++cartItem.count;
 	sessionStorage.cart = JSON.stringify(cart);
 };
 
