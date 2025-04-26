@@ -1,10 +1,6 @@
 "use strict";
 
-const writeEmptyCartMessage = () => {
-	const paragraph = document.createElement("p");
-	paragraph.textContent = "Seems like your cart is empty.";
-	getElement("#game_list").appendChild(paragraph);
-};
+const displayEmptyCartMsg = () => getElement("#empty_cart_message").style = "display:block;";
 
 const buildDescription = (game) => {
 	const storeDescription = document.createElement("div");
@@ -33,7 +29,7 @@ const removeFromCart = (listItem, itemId) => {
 	if (cart[cartItemIndex].count === 0) {
 		cart.splice(cartItemIndex, 1);
 		//? Write message if the cart is empty.
-		if (cart.length === 0) writeEmptyCartMessage();
+		if (cart.length === 0) displayEmptyCartMsg();
 	}
 	//? Save changes.
 	sessionStorage.cart = JSON.stringify(cart);
@@ -67,7 +63,7 @@ const main = async() => {
 	const games = await (await fetch("assets/games.json")).json();
 	//
 	if (!sessionStorage.cart || sessionStorage.cart === "[]") {
-		writeEmptyCartMessage();
+		displayEmptyCartMsg();
 		return;
 	}
 	//

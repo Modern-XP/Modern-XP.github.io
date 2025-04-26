@@ -3,7 +3,6 @@
 	padding: 0;
 	border: thin solid;
 }
-#game_list > p { text-align: center; }
 #game_list > li {
 	display: grid;
 	grid-template-columns: 1fr auto auto;
@@ -12,6 +11,11 @@
 	border-top: thick dashed;
 	padding: 0.25em 2ch;
 }
-#game_list > li:first-child {
+#game_list > li:first-of-type {
 	border-top: 0;
+}
+
+#empty_cart_message {
+	display: none;
+	text-align: center;
 }
