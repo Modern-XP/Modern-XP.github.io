@@ -27,7 +27,7 @@
 .sale_price {
 	color: var(--price-col);
 	background-color: var(--price-bgc);
-	border-color: var(--price-bgc);
+	border-color: var(--price-col);
 	font-size: 200%;
 	font-weight: bold;
 	font-style: oblique;
@@ -39,7 +39,7 @@
 .base_price:has(+ .sale_price) {
 	color: var(--old-price-col);
 	background-color: var(--old-price-bgc);
-	border-color: var(--old-price-bgc);
+	border-color: var(--old-price-col);
 	font-size: 90%;
 	font-weight: normal;
 	text-decoration: line-through double;
@@ -47,7 +47,7 @@
 .sale_amount {
 	color: var(--price-col);
 	background-color: var(--price-bgc);
-	border-color: var(--price-bgc);
+	border-color: var(--price-col);
 	font-weight: bold;
 	text-align: center;
 }
