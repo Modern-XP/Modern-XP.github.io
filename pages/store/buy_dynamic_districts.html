@@ -8,9 +8,13 @@
 	<link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="styles/headfooter.css">
 	<link rel="stylesheet" href="styles/nav.css">
-	<link rel="stylesheet" href="styles/buy.css">
+	<link rel="stylesheet" href="styles/store.css">
+	<link rel="stylesheet" href="styles/price_tag.css">
+	<link rel="stylesheet" href="styles/cart_dialog.css">
 	<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/170996705?v=4?s=32" type="image/x-icon">
 	<script src="scripts/load_components.js"></script>
+	<script src="scripts/store.js"></script>
+	<script src="scripts/price_tag.js"></script>
 </head>
 <body>
 	<header>
@@ -21,18 +25,32 @@
 	</header>
 	<include src="includes/nav.html"></include>
 	<main>
-		<div>
-			<h3>Dynamic Districts</h3>
-			<p>
-				The power to build a city is in your hands.
-				Manage and zone; fund and fire.
-				You're in charge, but that means you're responsible.
-				How well can you do?
-			</p>
-		</div>
+		<form action="pages/store/cart_view.html" method="PUT">
+			<input type="hidden" name="item_id" value="dynamic_districts_game">
+			<div id="store_description">
+				<h3>Dynamic Districts</h3>
+				<p>
+					The power to build a city is in your hands.
+					Manage and zone; fund and fire.
+					You're in charge, but that means you're responsible.
+					How well can you do?
+				</p>
+			</div>
+			<div id="store_tag">
+				<div class="price" base_price="500" sale_price="20"></div>
+				<button id="cart">ADD TO CART</button>
+			</div>
+		</form>
+		<dialog id="cart_dialog">
+			<div>
+				<p>Game added to cart.</p>
+				<button id="dialog_cart">View Cart</button>
+				<button id="dialog_close">Close</button>
+			</div>
+		</dialog>
 		<span>See also:</span>
 		<ul>
-			<li><a href="pages/store/buy_dynamic_districts.html">Dynamic Districts</a></li>
+			<!-- <li><a href="pages/store/buy_dynamic_districts.html">Dynamic Districts</a></li> -->
 			<li><a href="pages/store/buy_kaspiane.html">Kaspiane</a></li>
 			<li><a href="pages/store/buy_puff_pastry_panic.html">Puff Pastry Panic</a></li>
 		</ul>
