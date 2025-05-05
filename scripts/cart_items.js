@@ -58,7 +58,7 @@ const buildListItem = (game, itemId) => {
 	return listItem;
 };
 
-const main = async() => {
+const initializeCartList = async() => {
 	const list = getElement("#game_list");
 	const games = await (await fetch("assets/games.json")).json();
 	//
@@ -83,4 +83,4 @@ const main = async() => {
 	getElement("#game_list script").remove();
 };
 
-document.addEventListener("DOMContentLoaded", main);
+document.addEventListener("DOMContentLoaded", initializeCartList);
