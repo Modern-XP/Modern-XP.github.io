@@ -1,6 +1,30 @@
 "use strict";
 
-const displayEmptyCartMsg = () => getElement("#empty_cart_message").style = "display:block;";
+const loadJson = async(path) => await (await fetch(path)).json();
+
+const displayEmptyCartMsg = () => {
+	getElement("#empty_cart_message").style = "display:block;";
+	getElement("#store_tag").style = "display:none;";
+}
+
+const updateCart = async(isCartEmpty = false) => {
+	if (isCartEmpty) { displayEmptyCartMsg(); return; }
+	//
+	const games = await loadJson("assets/games.json");
+	const cart = JSON.parse(sessionStorage.cart);
+	let totalPrice = 0;
+	//
+	for (const item of cart) {
+		if (!((games.map(g => g.id)).includes(item.id))) continue;
+		//
+		const game = games.filter(g => g.id == item.id)[0];
+		//
+		for (let i = 0; i < item.count; ++i) {
+			totalPrice += isNaN(game.sale_price) ? game.base_price : game.sale_price;
+		}
+	}
+	getElement("#total").textContent = USD.format(totalPrice) + " + tax";
+};
 
 const buildDescription = (game) => {
 	const storeDescription = document.createElement("div");
@@ -26,11 +50,8 @@ const removeFromCart = (listItem, itemId) => {
 	//? Modify count.
 	--cart[cartItemIndex].count;
 	//? Remove empty entry from cart.
-	if (cart[cartItemIndex].count === 0) {
-		cart.splice(cartItemIndex, 1);
-		//? Write message if the cart is empty.
-		if (cart.length === 0) displayEmptyCartMsg();
-	}
+	if (cart[cartItemIndex].count === 0) { cart.splice(cartItemIndex, 1); }
+	updateCart(cart.length === 0);
 	//? Save changes.
 	sessionStorage.cart = JSON.stringify(cart);
 };
@@ -60,7 +81,7 @@ const buildListItem = (game, itemId) => {
 
 const initializeCartList = async() => {
 	const list = getElement("#game_list");
-	const games = await (await fetch("assets/games.json")).json();
+	const games = await loadJson("assets/games.json");
 	//
 	if (!sessionStorage.cart || sessionStorage.cart === "[]") {
 		displayEmptyCartMsg();
@@ -68,6 +89,7 @@ const initializeCartList = async() => {
 	}
 	//
 	const cart = JSON.parse(sessionStorage.cart);
+	let totalPrice = 0;
 	//
 	for (const item of cart) {
 		if (!((games.map(g => g.id)).includes(item.id))) continue;
@@ -77,10 +99,21 @@ const initializeCartList = async() => {
 		for (let i = 0; i < item.count; ++i) {
 			const listItem = buildListItem(game, item.id);
 			list.appendChild(listItem);
+			totalPrice += isNaN(game.sale_price) ? game.base_price : game.sale_price;
 		}
 	}
+	getElement("#total").textContent = USD.format(totalPrice) + " + tax";
 	//
 	getElement("#game_list script").remove();
 };
 
-document.addEventListener("DOMContentLoaded", initializeCartList);
+const buy = () => {
+	sessionStorage.receipt = sessionStorage.cart;
+	//? Clear cart.
+	sessionStorage.cart = "[]";
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+	initializeCartList();
+	getElement("#buy").addEventListener("click", buy);
+});
