@@ -51,7 +51,7 @@
 }
 
 /* Temp solution. May use slick-nav later. */
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
 	#nav_menu {
 		font-size: 0.9em;
 	}
