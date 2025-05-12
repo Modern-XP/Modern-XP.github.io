@@ -37,5 +37,5 @@
 	.gallery img:hover { transform: scale(1.5); }
 }
 @media screen and (max-width: 1000px) {
-	.gallery img:hover { transform: none; }
+	.gallery img:hover { transform: none; border: none; }
 }
