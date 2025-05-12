@@ -19,22 +19,23 @@ const updateCart = async(isCartEmpty = false) => {
 		//
 		const game = games.filter(g => g.id == item.id)[0];
 		//
-		for (let i = 0; i < item.count; ++i) {
-			totalPrice += isNaN(game.sale_price) ? game.base_price : game.sale_price;
-		}
+		totalPrice += (game.sale_price ?? game.base_price) * item.count;
 	}
 	getElement("#total").textContent = USD.format(totalPrice) + " + tax";
 };
 
 const removeFromCart = (listItem, itemId) => {
-	listItem.remove();
 	//? Get cart
 	const cart = JSON.parse(sessionStorage.cart);
 	const cartItemIndex = cart.findIndex(i => i.id === itemId);
 	//? Modify count.
 	--cart[cartItemIndex].count;
+	--listItem.querySelector("input").value;
 	//? Remove empty entry from cart.
-	if (cart[cartItemIndex].count === 0) { cart.splice(cartItemIndex, 1); }
+	if (cart[cartItemIndex].count === 0) {
+		listItem.remove();
+		cart.splice(cartItemIndex, 1);
+	}
 	updateCart(cart.length === 0);
 	//? Save changes.
 	sessionStorage.cart = JSON.stringify(cart);
@@ -69,7 +70,7 @@ const buildXButton = (onClick) => {
 	return xWrapper;
 }
 
-const buildListItem = (game, itemId) => {
+const buildListItem = (game, item) => {
 	const listItem = document.createElement("li");
 	const storeDescription = buildDescription(game);
 	const gamePrice = document.createElement("div");
@@ -82,8 +83,13 @@ const buildListItem = (game, itemId) => {
 	//
 	listItem.appendChild(storeDescription);
 	listItem.appendChild(gamePrice);
+	const counter = document.createElement("input");
+	counter.setAttribute("type","number");
+	counter.setAttribute("readonly",'T');
+	counter.value = item.count;
+	listItem.appendChild(counter)
 	//
-	const xButton = buildXButton(() => removeFromCart(listItem, itemId));
+	const xButton = buildXButton(() => removeFromCart(listItem, item.id));
 	//
 	listItem.appendChild(xButton);
 	//
@@ -107,11 +113,9 @@ const initializeCartList = async() => {
 		//
 		const game = games.filter(g => g.id == item.id)[0];
 		//
-		for (let i = 0; i < item.count; ++i) {
-			const listItem = buildListItem(game, item.id);
-			list.appendChild(listItem);
-			totalPrice += isNaN(game.sale_price) ? game.base_price : game.sale_price;
-		}
+		const listItem = buildListItem(game, item);
+		list.appendChild(listItem);
+		totalPrice += (game.sale_price ?? game.base_price) * item.count;
 	}
 	getElement("#total").textContent = USD.format(totalPrice) + " + tax";
 	//
