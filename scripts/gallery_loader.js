@@ -28,16 +28,15 @@ const recalcGallery = (gallery) => {
 };
 
 const buildGalleryEntry = (entry) => {
-	const figure = document.createElement("div");
+	const figure = document.createElement("figure");
 	const img = document.createElement("img");
-	const caption = document.createElement("label");
+	const caption = document.createElement("figcaption");
 	//
-	img.id = entry.id;
 	img.src = entry.image_link;
 	img.alt = entry.alt_text;
-	caption.for = entry.id;
 	caption.textContent = entry.caption;
 	//
+	figure.id = entry.id;
 	figure.appendChild(img);
 	figure.appendChild(caption);
 	//
