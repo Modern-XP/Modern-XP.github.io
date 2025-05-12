@@ -10,8 +10,37 @@
 	align-items: center;
 	border-top: thick dashed;
 	padding: 0.25em 2ch;
+	padding-right: 0.5ch;
 }
 #game_list > li:first-of-type { border-top: 0; }
+
+.x_wrapper {
+	position: relative;
+	width: 18pt;
+	height: 100%;
+}
+.x_button {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: #DC143C;
+	color: #FFF;
+	width: 1ch;
+	height: 1ch;
+	padding: 0.125ch;
+	border-radius: 50%;
+	line-height: 0.9ch;
+	text-align: center;
+	transform: rotate(45deg);
+	font-family: 'Arial' sans-serif;
+	font-size: 24pt;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color ease-in-out 100ms;
+}
+.x_button::before { content: '+'; }
+.x_button:hover, .x_button:focus { background-color: #FF6347; }
 
 #empty_cart_message {
 	display: none;

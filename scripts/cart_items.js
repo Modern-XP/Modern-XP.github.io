@@ -56,6 +56,19 @@ const removeFromCart = (listItem, itemId) => {
 	sessionStorage.cart = JSON.stringify(cart);
 };
 
+const buildXButton = (onClick) => {
+	const xElm = document.createElement("div");
+	xElm.className = "x_button";
+	xElm.tabIndex = 0;
+	xElm.addEventListener("click", onClick);
+	//
+	const xWrapper = document.createElement("div");
+	xWrapper.className = "x_wrapper";
+	xWrapper.appendChild(xElm);
+	//
+	return xWrapper;
+}
+
 const buildListItem = (game, itemId) => {
 	const listItem = document.createElement("li");
 	const storeDescription = buildDescription(game);
@@ -70,11 +83,9 @@ const buildListItem = (game, itemId) => {
 	listItem.appendChild(storeDescription);
 	listItem.appendChild(gamePrice);
 	//
-	const tempDiv = document.createElement("div");
-	tempDiv.textContent = "x";
-	tempDiv.style = "font-size: 32px; font-weight: bold; cursor: pointer;";
-	tempDiv.addEventListener("click", () => removeFromCart(listItem, itemId));
-	listItem.appendChild(tempDiv);
+	const xButton = buildXButton(() => removeFromCart(listItem, itemId));
+	//
+	listItem.appendChild(xButton);
 	//
 	return listItem;
 };
