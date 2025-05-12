@@ -11,9 +11,7 @@
 	border-top: thick dashed;
 	padding: 0.25em 2ch;
 }
-#game_list > li:first-of-type {
-	border-top: 0;
-}
+#game_list > li:first-of-type { border-top: 0; }
 
 #empty_cart_message {
 	display: none;
