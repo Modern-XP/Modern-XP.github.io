@@ -27,6 +27,23 @@ const recalcGallery = (gallery) => {
 	gallery.setAttribute("column_count", colCount);
 };
 
+const buildGalleryEntry = (entry) => {
+	const figure = document.createElement("div");
+	const img = document.createElement("img");
+	const caption = document.createElement("label");
+	//
+	img.id = entry.id;
+	img.src = entry.image_link;
+	img.alt = entry.alt_text;
+	caption.for = entry.id;
+	caption.textContent = entry.caption;
+	//
+	figure.appendChild(img);
+	figure.appendChild(caption);
+	//
+	return figure;
+};
+
 const loadGalleries = async() => {
 	const galleries = getElements(".gallery");
 	//
@@ -37,18 +54,7 @@ const loadGalleries = async() => {
 		for (const i in galleryEntries) {
 			const entry = galleryEntries[i]
 			//
-			const baseDiv = document.createElement("div");
-			const img = document.createElement("img");
-			const caption = document.createElement("label");
-			//
-			img.id = entry.id;
-			img.src = entry.image_link;
-			img.alt = entry.alt_text;
-			caption.for = entry.id;
-			caption.textContent = entry.caption;
-			//
-			baseDiv.appendChild(img);
-			baseDiv.appendChild(caption);
+			const baseDiv = buildGalleryEntry(entry);
 			//
 			gallery.appendChild(baseDiv);
 		}
