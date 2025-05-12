@@ -9,7 +9,9 @@ const loadGalleries = async() => {
 		const gallerySrc = gallery.getAttribute("id");
 		const galleryEntries = await loadJson(`assets/${gallerySrc}.json`);
 		//
-		for (const entry of galleryEntries) {
+		for (const i in galleryEntries) {
+			const entry = galleryEntries[i]
+			//
 			const baseDiv = document.createElement("div");
 			const img = document.createElement("img");
 			const caption = document.createElement("label");
