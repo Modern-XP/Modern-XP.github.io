@@ -26,6 +26,20 @@ const updateCart = async(isCartEmpty = false) => {
 	getElement("#total").textContent = USD.format(totalPrice) + " + tax";
 };
 
+const removeFromCart = (listItem, itemId) => {
+	listItem.remove();
+	//? Get cart
+	const cart = JSON.parse(sessionStorage.cart);
+	const cartItemIndex = cart.findIndex(i => i.id === itemId);
+	//? Modify count.
+	--cart[cartItemIndex].count;
+	//? Remove empty entry from cart.
+	if (cart[cartItemIndex].count === 0) { cart.splice(cartItemIndex, 1); }
+	updateCart(cart.length === 0);
+	//? Save changes.
+	sessionStorage.cart = JSON.stringify(cart);
+};
+
 const buildDescription = (game) => {
 	const storeDescription = document.createElement("div");
 	const gameTitle = document.createElement("h3");
@@ -40,20 +54,6 @@ const buildDescription = (game) => {
 	storeDescription.appendChild(gameDescription);
 	//
 	return storeDescription;
-};
-
-const removeFromCart = (listItem, itemId) => {
-	listItem.remove();
-	//? Get cart
-	const cart = JSON.parse(sessionStorage.cart);
-	const cartItemIndex = cart.findIndex(i => i.id === itemId);
-	//? Modify count.
-	--cart[cartItemIndex].count;
-	//? Remove empty entry from cart.
-	if (cart[cartItemIndex].count === 0) { cart.splice(cartItemIndex, 1); }
-	updateCart(cart.length === 0);
-	//? Save changes.
-	sessionStorage.cart = JSON.stringify(cart);
 };
 
 const buildXButton = (onClick) => {
