@@ -20,9 +20,9 @@
 	--price-bgc: #0C5B36;
 	/*? Anchor */
 	--anchor-col: #01ae63;
-	--anchor-vis-col: #ba2c1c;
+	--anchor-vis-col: #c349fb;
 	--anchor-fcol: #60f49e;
-	--anchor-vis-fcol: #fe6e59;
+	--anchor-vis-fcol: #db9aff;
 	/*? Styling */
 	color: var(--text-color);
 	background-color: var(--headfooter-bgc);
