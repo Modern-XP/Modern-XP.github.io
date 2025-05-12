@@ -104,7 +104,8 @@ const initializeCartList = async() => {
 	}
 	getElement("#total").textContent = USD.format(totalPrice) + " + tax";
 	//
-	getElement("#game_list script").remove();
+	const scriptElm = getElement("#game_list script");
+	if (scriptElm) scriptElm.remove();
 };
 
 const buy = () => {
