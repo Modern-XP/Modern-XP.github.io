@@ -2,20 +2,37 @@
 
 const loadJson = async(path) => await (await fetch(path)).json();
 
+const USD = new Intl.NumberFormat("en-US", { style: "currency", currency:"USD" });
+
 const buildReceipt = async() => {
-	const div1 = document.createElement("div");
-	div1.classList = "receipt";
-	for (let i = 0; i < 10; ++i) {
+	const games = await loadJson("assets/games.json");
+	const receipt = JSON.parse(sessionStorage.receipt);
+	//
+	const receiptElm = document.createElement("div");
+	receiptElm.className = "receipt";
+	let subtotal = 0;
+	for (let i = 0; i < receipt.length; ++i) {
+		const game = games.filter(g => g.id === receipt[i].id)[0];
 		const subDiv = document.createElement("div");
-		const text = document.createTextNode(`Item ${i}`);
+		//
+		const count = receipt[i].count;
+		const price = (game.sale_price ?? game.base_price) * count;
+		subtotal += price;
+		//
+		const text = document.createTextNode(`${game.title} x${count} | ${USD.format(price)}`);
 		subDiv.appendChild(text);
-		div1.appendChild(subDiv);
+		receiptElm.appendChild(subDiv);
 	}
-	div1.appendChild(document.createElement("hr"))
-	const para = document.createElement("p")
-	para.appendChild(document.createTextNode("Your total is 1,000,000,000 doubloons."))
-	div1.appendChild(para);
-	return div1;
+	//
+	receiptElm.appendChild(document.createElement("hr"));
+	const para = document.createElement("p");
+	para.appendChild(document.createTextNode(`Subtotal: ${USD.format(subtotal)}`));
+	para.appendChild(document.createElement("br"));
+	para.appendChild(document.createTextNode(`Tax: ${USD.format(subtotal * 0.05)}`));
+	para.appendChild(document.createElement("br"));
+	para.appendChild(document.createTextNode(`Total: ${USD.format(subtotal * 1.05)}`));
+	receiptElm.appendChild(para);
+	return receiptElm;
 };
 
 const createReceipt = async() => {
