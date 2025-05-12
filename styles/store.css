@@ -11,7 +11,7 @@
 }
 #store_description h2 { grid-area: t; margin: 0; padding: 0 2ch; }
 #store_description p { grid-area: d; margin: 0; padding: 1em 2ch; }
-#store_description img { grid-area: g; max-width: 320px;}
+#store_description img { grid-area: g; max-width: 320px; }
 
 #store_tag {
 	display: grid;
@@ -46,4 +46,18 @@
 
 aside {
 	margin: 0 auto;
+}
+
+@media only screen and (max-width: 800px) {
+	#store_description {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto auto;
+		grid-template-areas:
+			"g"
+			"t"
+			"d"
+		;
+	}
+	#store_description p { padding-left: 0; padding-right: 0; }
+	#store_description img { max-width: none; width: 100%; }
 }
