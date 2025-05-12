@@ -9,6 +9,17 @@ const loadGalleries = async() => {
 		const gallerySrc = gallery.getAttribute("id");
 		const galleryEntries = await loadJson(`assets/${gallerySrc}.json`);
 		//
+		const calculatedGallery = window.getComputedStyle(gallery);
+		//
+		const galleryColumnCount = calculatedGallery.getPropertyValue("grid-template-columns").split(" ").length;
+		const galleryResizeRowIndex = Math.floor(galleryEntries.length / galleryColumnCount);
+		const galleryRemainder = galleryEntries.length % galleryColumnCount;
+		//
+		const halfWidth = (galleryColumnCount - 1) / 2;
+		const offsetMultiplier = 1 - ((galleryRemainder - 1) / Math.max(1,galleryColumnCount - 1));
+		//
+		const translateString = `translate: calc((100% + 2ch) * ${halfWidth} * ${offsetMultiplier}) 0;`;
+		//
 		for (const i in galleryEntries) {
 			const entry = galleryEntries[i]
 			//
@@ -24,6 +35,8 @@ const loadGalleries = async() => {
 			//
 			baseDiv.appendChild(img);
 			baseDiv.appendChild(caption);
+			//
+			if ((i / galleryColumnCount) >= galleryResizeRowIndex) baseDiv.style = translateString;
 			//
 			gallery.appendChild(baseDiv);
 		}
