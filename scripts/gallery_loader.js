@@ -53,10 +53,8 @@ const loadGalleries = async() => {
 		//
 		for (const i in galleryEntries) {
 			const entry = galleryEntries[i]
-			//
-			const baseDiv = buildGalleryEntry(entry);
-			//
-			gallery.appendChild(baseDiv);
+			const figure = buildGalleryEntry(entry);
+			gallery.appendChild(figure);
 		}
 		//
 		const calculatedGallery = window.getComputedStyle(gallery);
