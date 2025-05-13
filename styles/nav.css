@@ -40,6 +40,8 @@
 	background-color: var(--nav-highlight-bgc);
 }
 
+#slicknav { display: none; }
+
 /*? Size Queries */
 @media only screen and (max-width: 1000px) {
 	#nav_menu > ul ul {
@@ -52,7 +54,6 @@
 
 /* Temp solution. May use slick-nav later. */
 @media only screen and (max-width: 500px) {
-	#nav_menu {
-		font-size: 0.9em;
-	}
+	#nav_menu:has(+#slicknav) { display: none; }
+	#slicknav { display: block; }
 }
