@@ -13,25 +13,48 @@ const buildReceipt = async() => {
 	let subtotal = 0;
 	for (let i = 0; i < receipt.length; ++i) {
 		const game = games.filter(g => g.id === receipt[i].id)[0];
-		const subDiv = document.createElement("div");
 		//
 		const count = receipt[i].count;
 		const price = (game.sale_price ?? game.base_price) * count;
 		subtotal += price;
 		//
-		const text = document.createTextNode(`${game.title} x${count} | ${USD.format(price)}`);
-		subDiv.appendChild(text);
-		receiptElm.appendChild(subDiv);
+		const itemInfo = document.createElement("span");
+		const priceInfo = document.createElement("span");
+		itemInfo.textContent = `${game.title} x${count}`;
+		priceInfo.textContent = USD.format(price);
+		receiptElm.appendChild(itemInfo);
+		receiptElm.appendChild(priceInfo);
 	}
 	//
+	const taxAmount = 0.05;
+	//
 	receiptElm.appendChild(document.createElement("hr"));
-	const para = document.createElement("p");
-	para.appendChild(document.createTextNode(`Subtotal: ${USD.format(subtotal)}`));
-	para.appendChild(document.createElement("br"));
-	para.appendChild(document.createTextNode(`Tax: ${USD.format(subtotal * 0.05)}`));
-	para.appendChild(document.createElement("br"));
-	para.appendChild(document.createTextNode(`Total: ${USD.format(subtotal * 1.05)}`));
-	receiptElm.appendChild(para);
+	//
+	const subtotalElm = document.createElement("span");
+	const taxElm = document.createElement("span");
+	const totalElm = document.createElement("span");
+	const subtotalAmountElm = document.createElement("span");
+	const taxAmountElm = document.createElement("span");
+	const totalAmountElm = document.createElement("span");
+	//
+	subtotalAmountElm.className = "money right";
+	taxAmountElm.className = "money right";
+	totalAmountElm.className = "money right";
+	//
+	subtotalElm.textContent = "Subtotal:";
+	taxElm.textContent = "Tax:";
+	totalElm.textContent = "Total:";
+	subtotalAmountElm.textContent = USD.format(subtotal);
+	taxAmountElm.textContent = USD.format(subtotal * taxAmount);
+	totalAmountElm.textContent = USD.format(subtotal * (1 + taxAmount));
+	//
+	receiptElm.appendChild(subtotalElm);
+	receiptElm.appendChild(subtotalAmountElm);
+	receiptElm.appendChild(taxElm);
+	receiptElm.appendChild(taxAmountElm);
+	receiptElm.appendChild(totalElm);
+	receiptElm.appendChild(totalAmountElm);
+	//
 	return receiptElm;
 };
 
