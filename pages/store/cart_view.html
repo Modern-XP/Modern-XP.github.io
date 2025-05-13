@@ -12,6 +12,11 @@
 	<link rel="stylesheet" href="styles/price_tag.css">
 	<link rel="stylesheet" href="styles/cart.css">
 	<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/170996705?v=4?s=32" type="image/x-icon">
+	<link rel="stylesheet" href="styles/slicknav.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			crossorigin="anonymous"></script>
+	<script src="scripts/jquery.slicknav.min.js"></script>
 	<script src="scripts/load_components.js"></script>
 	<script src="scripts/cart_items.js"></script>
 	<script src="scripts/price_tag.js"></script>
@@ -23,7 +28,23 @@
 			<h1>Pondworks</h1>
 		</div>
 	</header>
-	<include src="includes/nav.html"></include>
+	<!-- <include src="includes/nav.html"></include> -->
+	<nav id="nav_menu">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="pages/projects.html" style="width:17ch;">Projects</a>
+				<ul>
+					<li><a href="pages/store/buy_dynamic_districts.html">Dynamic Districts</a></li>
+					<li><a href="pages/store/buy_kaspiane.html">Kaspiane</a></li>
+					<li><a href="pages/store/buy_puff_pastry_panic.html">Puff Pastry Panic</a></li>
+				</ul>
+			</li>
+			<li><a href="pages/store/cart_view.html">View Cart</a></li>
+			<li><a href="pages/about.html">About Us</a></li>
+		</ul>
+	</nav>
+	<nav id="slicknav"></nav>
+	<script type="text/javascript">$(document).ready(() => {$('#nav_menu').slicknav({ prependTo:"#slicknav" })})</script>
 	<main>
 		<ul id="game_list">
 			<p id="empty_cart_message">Seems like your cart is empty.</p>
