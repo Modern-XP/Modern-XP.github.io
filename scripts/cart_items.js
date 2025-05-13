@@ -2,6 +2,9 @@
 
 const loadJson = async(path) => await (await fetch(path)).json();
 
+const getCart = () => JSON.parse(sessionStorage.cart);
+const setCart = (newCart) => sessionStorage.cart = JSON.stringify(newCart);
+
 const displayEmptyCartMsg = () => {
 	getElement("#empty_cart_message").style = "display:block;";
 	getElement("#store_tag").style = "display:none;";
@@ -28,33 +31,22 @@ const removeFromCart = (listItem, itemId) => {
 	//? Get cart
 	const cart = JSON.parse(sessionStorage.cart);
 	const cartItemIndex = cart.findIndex(i => i.id === itemId);
-	//? Modify count.
-	--cart[cartItemIndex].count;
-	--listItem.querySelector("input").value;
 	//? Remove empty entry from cart.
-	if (cart[cartItemIndex].count === 0) {
-		listItem.remove();
-		cart.splice(cartItemIndex, 1);
-	}
+	listItem.remove();
+	cart.splice(cartItemIndex, 1);
 	updateCart(cart.length === 0);
 	//? Save changes.
 	sessionStorage.cart = JSON.stringify(cart);
 };
 
-const buildDescription = (game) => {
-	const storeDescription = document.createElement("div");
-	const gameTitle = document.createElement("h3");
-	const gameDescription = document.createElement("p");
+const changeItemCount = (counter, item) => {
+	const cart = getCart();
 	//
-	storeDescription.setAttribute("class", "store_description")
+	const index = cart.map(i => i.id).indexOf(item.id);
+	cart[index].count = counter.value;
 	//
-	gameTitle.appendChild(document.createTextNode(game.title));
-	gameDescription.appendChild(document.createTextNode(game.description));
-	//
-	storeDescription.appendChild(gameTitle);
-	storeDescription.appendChild(gameDescription);
-	//
-	return storeDescription;
+	setCart(cart);
+	updateCart(cart.length === 0);
 };
 
 const buildXButton = (onClick) => {
@@ -72,25 +64,38 @@ const buildXButton = (onClick) => {
 
 const buildListItem = (game, item) => {
 	const listItem = document.createElement("li");
-	const storeDescription = buildDescription(game);
+	const gameArt = document.createElement("img");
+	const gameTitle = document.createElement("h2");
 	const gamePrice = document.createElement("div");
+	const counter = document.createElement("input");
+	//
+	const gameTC = document.createElement("div");
+	//
+	gameArt.src = game.art;
+	gameTitle.textContent = game.title;
 	//
 	gamePrice.setAttribute("class", "price");
 	gamePrice.setAttribute("base_price", game.base_price);
 	gamePrice.setAttribute("sale_price", game.sale_price);
+	counter.setAttribute("type","number");
+	counter.addEventListener("change", () => changeItemCount(counter, item));
+	counter.value = item.count;
+	counter.min = 1;
+	counter.max = 999;
+	counter.step = 1;
 	//
 	buildPriceElement(gamePrice);
 	//
-	listItem.appendChild(storeDescription);
+	gameTC.className = "cart_tc";
+	//
+	gameTC.appendChild(gameTitle);
+	gameTC.appendChild(counter)
+	//
+	listItem.appendChild(gameArt);
+	listItem.appendChild(gameTC);
 	listItem.appendChild(gamePrice);
-	const counter = document.createElement("input");
-	counter.setAttribute("type","number");
-	counter.setAttribute("readonly",'T');
-	counter.value = item.count;
-	listItem.appendChild(counter)
 	//
 	const xButton = buildXButton(() => removeFromCart(listItem, item.id));
-	//
 	listItem.appendChild(xButton);
 	//
 	return listItem;

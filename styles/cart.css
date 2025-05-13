@@ -5,19 +5,35 @@
 }
 #game_list > li {
 	display: grid;
-	grid-template-columns: 1fr auto auto;
+	grid-template-columns: auto 1fr auto auto;
+	grid-template-areas: "a i . x";
 	justify-content: center;
 	align-items: center;
 	border-top: thick dashed;
-	padding: 0.25em 2ch;
-	padding-right: 0.5ch;
+	padding: 0.25em 0.5ch;
 }
 #game_list > li:first-of-type { border-top: 0; }
+
+.cart_tc { padding: 1em 2ch; }
+.cart_tc h2 { width: fit-content; margin-top: 0;}
+
+#game_list img { max-width: 320px; grid-area: a; }
+#game_list input {
+	display: block;
+	color: var(--color);
+	background-color: var(--background-color);
+	/* border: 0; */
+	width: 5ch;
+	font-size: larger;
+	padding: 0 1ch;
+	border-radius: 1ch;
+}
 
 .x_wrapper {
 	position: relative;
 	width: 18pt;
 	height: 100%;
+	grid-area: x;
 }
 .x_button {
 	display: inline-block;
@@ -38,6 +54,7 @@
 	font-weight: bold;
 	cursor: pointer;
 	transition: background-color ease-in-out 100ms;
+	grid-column: -2 / -1;
 }
 .x_button::before { content: '+'; }
 .x_button:hover, .x_button:focus { background-color: #FF6347; }
@@ -45,4 +62,33 @@
 #empty_cart_message {
 	display: none;
 	text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+	#game_list > li {
+		grid-template-columns: 1fr auto auto;
+		grid-template-areas:
+			"i . x"
+			"a a a"
+		;
+	}
+	#game_list h2 { text-align: center; }
+	#game_list input { margin: 0 auto; }
+	#game_list .price { margin: 0 auto; }
+	#game_list img { max-width: none; width: 100%; }
+}
+
+@media only screen and (max-width: 500px) {
+	#game_list > li {
+		grid-template-columns: 1fr auto;
+		grid-template-areas:
+			"i x"
+			". x"
+			"a a"
+		;
+	}
+	#game_list h2 { text-align: center; }
+	#game_list input { margin: 0 auto; }
+	#game_list .price { margin: 0 auto; }
+	#game_list img { max-width: none; width: 100%; }
 }
