@@ -30,3 +30,7 @@
 #projects h3:hover {
 	text-decoration-line: underline;
 }
+#projects img {
+	max-width: 100%;
+	margin: 0 auto;
+}
