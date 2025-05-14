@@ -3,7 +3,7 @@
 		"id":"dynamic_districts_game",
 		"title":"Dynamic Districts",
 		"description":"The power to build a city is in your hands. Manage and zone; fund and fire. You're in charge, but that means you're responsible. How well can you do?",
-		"art":"assets/EdgeDetectionShader.png",
+		"art":"assets/DynamicDistrictsArt.png",
 		"base_price":500.00,
 		"sale_price":20.00
 	},
