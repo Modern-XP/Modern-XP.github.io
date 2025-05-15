@@ -2,6 +2,9 @@
 
 const loadJson = async(path) => await (await fetch(path)).json();
 
+const getCart = () => JSON.parse(sessionStorage.cart);
+const setCart = (newCart) => sessionStorage.cart = JSON.stringify(newCart);
+
 const displayEmptyCartMsg = () => {
 	getElement("#empty_cart_message").style = "display:block;";
 	getElement("#store_tag").style = "display:none;";
@@ -19,62 +22,81 @@ const updateCart = async(isCartEmpty = false) => {
 		//
 		const game = games.filter(g => g.id == item.id)[0];
 		//
-		for (let i = 0; i < item.count; ++i) {
-			totalPrice += isNaN(game.sale_price) ? game.base_price : game.sale_price;
-		}
+		totalPrice += (game.sale_price ?? game.base_price) * item.count;
 	}
 	getElement("#total").textContent = USD.format(totalPrice) + " + tax";
 };
 
-const buildDescription = (game) => {
-	const storeDescription = document.createElement("div");
-	const gameTitle = document.createElement("h3");
-	const gameDescription = document.createElement("p");
-	//
-	storeDescription.setAttribute("class", "store_description")
-	//
-	gameTitle.appendChild(document.createTextNode(game.title));
-	gameDescription.appendChild(document.createTextNode(game.description));
-	//
-	storeDescription.appendChild(gameTitle);
-	storeDescription.appendChild(gameDescription);
-	//
-	return storeDescription;
-};
-
 const removeFromCart = (listItem, itemId) => {
-	listItem.remove();
 	//? Get cart
 	const cart = JSON.parse(sessionStorage.cart);
 	const cartItemIndex = cart.findIndex(i => i.id === itemId);
-	//? Modify count.
-	--cart[cartItemIndex].count;
 	//? Remove empty entry from cart.
-	if (cart[cartItemIndex].count === 0) { cart.splice(cartItemIndex, 1); }
+	listItem.remove();
+	cart.splice(cartItemIndex, 1);
 	updateCart(cart.length === 0);
 	//? Save changes.
 	sessionStorage.cart = JSON.stringify(cart);
 };
 
-const buildListItem = (game, itemId) => {
+const changeItemCount = (counter, item) => {
+	const cart = getCart();
+	//
+	const index = cart.map(i => i.id).indexOf(item.id);
+	cart[index].count = counter.value;
+	//
+	setCart(cart);
+	updateCart(cart.length === 0);
+};
+
+const buildXButton = (onClick) => {
+	const xElm = document.createElement("div");
+	xElm.className = "x_button";
+	xElm.tabIndex = 0;
+	xElm.addEventListener("click", onClick);
+	//
+	const xWrapper = document.createElement("div");
+	xWrapper.className = "x_wrapper";
+	xWrapper.appendChild(xElm);
+	//
+	return xWrapper;
+}
+
+const buildListItem = (game, item) => {
 	const listItem = document.createElement("li");
-	const storeDescription = buildDescription(game);
+	const gameArt = document.createElement("img");
+	const gameTitle = document.createElement("h2");
 	const gamePrice = document.createElement("div");
+	const counter = document.createElement("input");
+	//
+	const gameTC = document.createElement("div");
+	//
+	gameArt.src = game.art;
+	gameTitle.textContent = game.title;
 	//
 	gamePrice.setAttribute("class", "price");
 	gamePrice.setAttribute("base_price", game.base_price);
 	gamePrice.setAttribute("sale_price", game.sale_price);
+	counter.setAttribute("type","number");
+	counter.addEventListener("change", () => changeItemCount(counter, item));
+	counter.value = item.count;
+	counter.min = 1;
+	counter.max = 999;
+	counter.step = 1;
 	//
 	buildPriceElement(gamePrice);
 	//
-	listItem.appendChild(storeDescription);
+	gameTC.className = "cart_tc";
+	//
+	gameTC.appendChild(gameTitle);
+	gameTC.appendChild(counter)
+	//
+	listItem.appendChild(gameArt);
+	listItem.appendChild(gameTC);
 	listItem.appendChild(gamePrice);
 	//
-	const tempDiv = document.createElement("div");
-	tempDiv.textContent = "x";
-	tempDiv.style = "font-size: 32px; font-weight: bold; cursor: pointer;";
-	tempDiv.addEventListener("click", () => removeFromCart(listItem, itemId));
-	listItem.appendChild(tempDiv);
+	const xButton = buildXButton(() => removeFromCart(listItem, item.id));
+	listItem.appendChild(xButton);
 	//
 	return listItem;
 };
@@ -96,15 +118,14 @@ const initializeCartList = async() => {
 		//
 		const game = games.filter(g => g.id == item.id)[0];
 		//
-		for (let i = 0; i < item.count; ++i) {
-			const listItem = buildListItem(game, item.id);
-			list.appendChild(listItem);
-			totalPrice += isNaN(game.sale_price) ? game.base_price : game.sale_price;
-		}
+		const listItem = buildListItem(game, item);
+		list.appendChild(listItem);
+		totalPrice += (game.sale_price ?? game.base_price) * item.count;
 	}
 	getElement("#total").textContent = USD.format(totalPrice) + " + tax";
 	//
-	getElement("#game_list script").remove();
+	const scriptElm = getElement("#game_list script");
+	if (scriptElm) scriptElm.remove();
 };
 
 const buy = () => {

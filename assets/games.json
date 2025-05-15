@@ -3,6 +3,7 @@
 		"id":"dynamic_districts_game",
 		"title":"Dynamic Districts",
 		"description":"The power to build a city is in your hands. Manage and zone; fund and fire. You're in charge, but that means you're responsible. How well can you do?",
+		"art":"assets/DynamicDistrictsArt.png",
 		"base_price":500.00,
 		"sale_price":20.00
 	},
@@ -10,6 +11,7 @@
 		"id":"kaspiane_game",
 		"title":"Kaspiane",
 		"description":"The year is 2014, the world has been forever changed. Humanity has pushed the demonic invaders back to hell. Now you are tasked with clearing out the remnants, but the situation might be much different than it seems. Use their own demonic powers to fight against them, all while searching for the truth of your own past.",
+		"art":"assets/KaspianeArt.png",
 		"base_price":20.00,
 		"sale_price":5.00
 	},
@@ -17,6 +19,7 @@
 		"id":"puff_pastry_panic_game",
 		"title":"Puff Pastry Panic",
 		"description":"You've gotta make food for your customers. One problem though: your equipment is malfunctioning. Hurry around the kitchen and make those orders as fast as you can. Troubleshoot and resolve problems quickly before your customers go eat elsewhere.",
+		"art":"assets/PuffPastryPanicArt.png",
 		"base_price":10.00,
 		"sale_price":5.00
 	}

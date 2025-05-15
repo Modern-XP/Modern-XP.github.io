@@ -20,3 +20,14 @@
 	padding: 2px;
 	margin: 5px;
 }
+
+@media only screen and (max-width: 500px) {
+	#members li {
+		grid-template-columns: auto 1fr;
+		border-top-left-radius: 41px;
+		border-bottom-left-radius: 0;
+	}
+	#members p {
+		grid-column: 2 / 3;
+	}
+}

@@ -1,0 +1,18 @@
+h2 { text-align: center; }
+
+.receipt {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	column-gap: 1ch;
+	width: fit-content;
+	margin: 0 auto;
+}
+.receipt hr {
+	grid-column: 1 / -1;
+	width: 100%;
+	margin: 0;
+}
+
+.right {
+	text-align: right;
+}

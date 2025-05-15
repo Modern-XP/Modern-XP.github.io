@@ -12,6 +12,11 @@
 	<link rel="stylesheet" href="styles/price_tag.css">
 	<link rel="stylesheet" href="styles/cart_dialog.css">
 	<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/170996705?v=4?s=32" type="image/x-icon">
+	<link rel="stylesheet" href="styles/slicknav.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			crossorigin="anonymous"></script>
+	<script src="scripts/jquery.slicknav.min.js"></script>
 	<script src="scripts/load_components.js"></script>
 	<script src="scripts/store.js"></script>
 	<script src="scripts/price_tag.js"></script>
@@ -23,18 +28,35 @@
 			<h1>Pondworks</h1>
 		</div>
 	</header>
-	<include src="includes/nav.html"></include>
+	<!-- <include src="includes/nav.html"></include> -->
+	<nav id="nav_menu">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="pages/projects.html" style="width:17ch;">Projects</a>
+				<ul>
+					<li><a href="pages/store/buy_dynamic_districts.html">Dynamic Districts</a></li>
+					<li><a href="pages/store/buy_kaspiane.html">Kaspiane</a></li>
+					<li><a href="pages/store/buy_puff_pastry_panic.html">Puff Pastry Panic</a></li>
+				</ul>
+			</li>
+			<li><a href="pages/store/cart_view.html">View Cart</a></li>
+			<li><a href="pages/about.html">About Us</a></li>
+		</ul>
+	</nav>
+	<nav id="slicknav"></nav>
+	<script type="text/javascript">$(document).ready(() => {$('#nav_menu').slicknav({ prependTo:"#slicknav" })})</script>
 	<main>
 		<form action="pages/store/cart_view.html" method="PUT">
 			<input type="hidden" name="item_id" value="puff_pastry_panic_game">
 			<div id="store_description">
-				<h3>Puff Pastry Panic</h3>
+				<h2>Puff Pastry Panic</h2>
 				<p>
 					You've gotta make food for your customers.
 					One problem though: your equipment is malfunctioning.
 					Hurry around the kitchen and make those orders as fast as you can.
 					Troubleshoot and resolve problems quickly before your customers go eat elsewhere.
 				</p>
+				<img src="assets/PuffPastryPanicArt.png" alt="Puff Pastry Panic art.">
 			</div>
 			<div id="store_tag">
 				<div class="price" base_price="10" sale_price="5"></div>
@@ -48,13 +70,15 @@
 				<button id="dialog_close">Close</button>
 			</div>
 		</dialog>
+	</main>
+	<aside>
 		<span>See also:</span>
 		<ul>
 			<li><a href="pages/store/buy_dynamic_districts.html">Dynamic Districts</a></li>
 			<li><a href="pages/store/buy_kaspiane.html">Kaspiane</a></li>
 			<!-- <li><a href="pages/store/buy_puff_pastry_panic.html">Puff Pastry Panic</a></li> -->
 		</ul>
-	</main>
+	</aside>
 	<include src="includes/footer.html"></include>
 </body>
 </html>

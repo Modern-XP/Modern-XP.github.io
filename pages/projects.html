@@ -10,6 +10,11 @@
 	<link rel="stylesheet" href="styles/nav.css">
 	<link rel="stylesheet" href="styles/projects.css">
 	<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/170996705?v=4?s=32" type="image/x-icon">
+	<link rel="stylesheet" href="styles/slicknav.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			crossorigin="anonymous"></script>
+	<script src="scripts/jquery.slicknav.min.js"></script>
 	<script src="scripts/load_components.js"></script>
 </head>
 <body>
@@ -19,7 +24,23 @@
 			<h1>Pondworks</h1>
 		</div>
 	</header>
-	<include src="includes/nav.html"></include>
+	<!-- <include src="includes/nav.html"></include> -->
+	<nav id="nav_menu">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="pages/projects.html" style="width:17ch;">Projects</a>
+				<ul>
+					<li><a href="pages/store/buy_dynamic_districts.html">Dynamic Districts</a></li>
+					<li><a href="pages/store/buy_kaspiane.html">Kaspiane</a></li>
+					<li><a href="pages/store/buy_puff_pastry_panic.html">Puff Pastry Panic</a></li>
+				</ul>
+			</li>
+			<li><a href="pages/store/cart_view.html">View Cart</a></li>
+			<li><a href="pages/about.html">About Us</a></li>
+		</ul>
+	</nav>
+	<nav id="slicknav"></nav>
+	<script type="text/javascript">$(document).ready(() => {$('#nav_menu').slicknav({ prependTo:"#slicknav" })})</script>
 	<main>
 		<h2>Projects</h2>
 		<p>
@@ -35,6 +56,7 @@
 					You're in charge, but that means you're responsible.
 					How well can you do?
 				</p>
+				<img src="assets/DynamicDistrictsArt.png" alt="Dynamic Districts art.">
 			</li>
 			<li>
 				<a href="pages/store/buy_kaspiane.html"><h3>Kaspiane</h3></a>
@@ -44,6 +66,7 @@
 					Now you are tasked with clearing out the remnants, but the situation might be much different than it seems.
 					Use their own demonic powers to fight against them, all while searching for the truth of your own past.
 				</p>
+				<img src="assets/KaspianeArt.png" alt="Kaspiane art.">
 			</li>
 			<li>
 				<a href="pages/store/buy_puff_pastry_panic.html"><h3>Puff Pastry Panic</h3></a>
@@ -53,6 +76,7 @@
 					Hurry around the kitchen and make those orders as fast as you can.
 					Troubleshoot and resolve problems quickly before your customers go eat elsewhere.
 				</p>
+				<img src="assets/PuffPastryPanicArt.png" alt="Puff Pastry Panic art.">
 			</li>
 		</ul>
 	</main>

@@ -5,7 +5,8 @@
 	column-gap: 2ch;
 	row-gap: 1em;
 }
-.gallery div {
+.gallery figure {
+	margin: 0;
 	border: 2px solid;
 	background-color: var(--bg-color);
 	/* Grid */
@@ -23,8 +24,7 @@
 	transform: scale(2);
 	border: 1px solid;
 }
-.gallery label {
-	display: block;
+.gallery figcaption {
 	/* text-align: center; */
 	width: 100%;
 	margin: 0;
@@ -37,5 +37,5 @@
 	.gallery img:hover { transform: scale(1.5); }
 }
 @media screen and (max-width: 1000px) {
-	.gallery img:hover { transform: none; }
+	.gallery img:hover { transform: none; border: none; }
 }
