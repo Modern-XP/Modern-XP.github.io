@@ -22,6 +22,7 @@ const buildReceipt = async() => {
 		const priceInfo = document.createElement("span");
 		itemInfo.textContent = `${game.title} x${count}`;
 		priceInfo.textContent = USD.format(price);
+		priceInfo.className = "money right";
 		receiptElm.appendChild(itemInfo);
 		receiptElm.appendChild(priceInfo);
 	}
