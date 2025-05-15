@@ -10,7 +10,7 @@ h2 { text-align: center; }
 .receipt hr {
 	grid-column: 1 / -1;
 	width: 100%;
-	margin: 0;
+	margin: 0.5em 0;
 }
 
 .right {
