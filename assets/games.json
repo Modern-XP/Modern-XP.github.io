@@ -19,7 +19,7 @@
 		"id":"puff_pastry_panic_game",
 		"title":"Puff Pastry Panic",
 		"description":"You've gotta make food for your customers. One problem though: your equipment is malfunctioning. Hurry around the kitchen and make those orders as fast as you can. Troubleshoot and resolve problems quickly before your customers go eat elsewhere.",
-		"art":"assets/EdgeDetectionShader.png",
+		"art":"assets/PuffPastryPanicArt.png",
 		"base_price":10.00,
 		"sale_price":5.00
 	}
