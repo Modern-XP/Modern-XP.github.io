@@ -136,4 +136,5 @@ blockquote {
 		--anchor-fcol: #555 !important;
 		--anchor-vis-fcol: #111 !important;
 	}
+	nav { display: none; }
 }
