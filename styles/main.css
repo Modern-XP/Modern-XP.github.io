@@ -127,4 +127,5 @@ blockquote {
 	}
 	a { color: #555 !important; }
 	a:visited { color: #111 !important; }
+	nav { display: none; }
 }
