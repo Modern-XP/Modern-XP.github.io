@@ -10,6 +10,24 @@ const buildReceipt = async() => {
 	//
 	const receiptElm = document.createElement("div");
 	receiptElm.className = "receipt";
+	//
+	const merchant = document.createElement("div");
+	const merchantName = document.createElement("div");
+	const transDate = document.createElement("div");
+	const transDateValue = document.createElement("div");
+	//
+	merchant.textContent = "Merchant:";
+	merchantName.textContent = "Pondworks";
+	transDate.textContent = "Transaction Date:";
+	transDateValue.textContent = new Date().toLocaleDateString();
+	//
+	receiptElm.appendChild(merchant);
+	receiptElm.appendChild(merchantName);
+	receiptElm.appendChild(transDate);
+	receiptElm.appendChild(transDateValue);
+	//
+	receiptElm.appendChild(document.createElement("hr"));
+	//
 	let subtotal = 0;
 	for (let i = 0; i < receipt.length; ++i) {
 		const game = games.filter(g => g.id === receipt[i].id)[0];
